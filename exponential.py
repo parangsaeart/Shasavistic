@@ -1,7 +1,10 @@
+# Method of finding temperament from https://note.com/hojo_minori/n/n6a9c39b67327
+# Classes 3, 5, 7, 11, 13, 17, 19
 import math
 count = {}
-accuracy = int(input('factor > '))
-templimit = int(input('temperament limit > '))
+accuracy = int(input('accuracy > ')) # Pitch difference filter
+templimit = int(input('temperament limit > ')) # Numbers of temperaments checking
+
 def pitchDiff(a, b):
     return min(abs(1200*math.log2(a/b)), abs(1200*math.log2(b/a)))
 goods = {}
@@ -24,5 +27,5 @@ for w in [3, 5, 7, 11, 13, 17, 19]:
                     count[str(d)] = 1
             a += 1
             c *= 2
-print(goods)
-print(count)
+print(goods) # temperaments and the exponents of 2 when it showed accuracy for each classes
+print(count) # counts how many times which temperament was decided accurate
