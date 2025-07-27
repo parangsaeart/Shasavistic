@@ -52,7 +52,7 @@ for key, value in sorted_count.items():
 x = np.arange(len(tmp))
 plt.title("Accuracy: "+str(accuracy))
 plt.bar(x, freq)
-plt.xticks(x, tmp, fontsize=3)
+plt.xticks(x, tmp, fontsize=5)
 plt.show()
 
 # Graphs of ones which past 4 counts
@@ -64,5 +64,5 @@ for key, value in good_count.items():
 x = np.arange(len(tmp))
 plt.title("4+ / Accuracy: "+str(accuracy))
 plt.bar(x, freq)
-plt.xticks(x, tmp, fontsize=3)
+plt.xticks(x, tmp, fontsize=7)
 plt.show()
