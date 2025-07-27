@@ -1,6 +1,8 @@
 # Method of finding temperament from https://note.com/hojo_minori/n/n6a9c39b67327
 # Classes 3, 5, 7, 11, 13, 17, 19
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 count = {}
 accuracy = int(input('accuracy > ')) # Pitch difference filter
 templimit = int(input('temperament limit > ')) # Numbers of temperaments checking
@@ -28,4 +30,37 @@ for w in [3, 5, 7, 11, 13, 17, 19]:
             a += 1
             c *= 2
 print(goods) # temperaments and the exponents of 2 when it showed accuracy for each classes
-print(count) # counts how many times which temperament was decided accurate
+sortablelist = []
+for aqp in count.items():
+    sortablelist.append(int(aqp[0]))
+sorted_temperaments = sorted(sortablelist)
+sorted_count = {}
+good_count = {}
+for aqp in sorted_temperaments:
+    if count[str(aqp)] >= 4:
+        good_count[str(aqp)] = count[str(aqp)]
+    sorted_count[str(aqp)] = count[str(aqp)]
+
+print(sorted_count) # counts how many times which temperament was decided accurate
+
+# Graphs of all temperaments which got any count
+tmp = []
+freq = []
+for key, value in sorted_count.items():
+    tmp.append(key)
+    freq.append(value)
+x = np.arange(len(tmp))
+plt.bar(x, freq)
+plt.xticks(x, tmp, fontsize=3)
+plt.show()
+
+# Graphs of ones which past 4 counts
+tmp = []
+freq = []
+for key, value in good_count.items():
+    tmp.append(key)
+    freq.append(value)
+x = np.arange(len(tmp))
+plt.bar(x, freq)
+plt.xticks(x, tmp, fontsize=3)
+plt.show()
