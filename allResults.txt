@@ -1,0 +1,116 @@
+24 temperament / 3 / 1.6291673878227053 per mil
+24 temperament / 4 / 0.0 per mil
+24 temperament / 5 / 11.405238445971133 per mil
+24 temperament / 6 / 1.6291673878227053 per mil
+24 temperament / 7 / 15.688255390937545 per mil
+24 temperament / 8 / 0.0 per mil
+24 temperament / 9 / 3.258334775645494 per mil
+24 temperament / 10 / 11.405238445971133 per mil
+24 temperament / 11 / 1.0982853039639973 per mil
+24 temperament / 12 / 1.6291673878227053 per mil
+24 temperament / 13 / 7.893615192241188 per mil
+24 temperament / 14 / 15.688255390937545 per mil
+24 temperament / 15 / 9.776071058147927 per mil
+24 temperament / 16 / 0.0 per mil
+24 temperament / 17 / 4.129507917005768 per mil
+24 temperament / 18 / 3.258334775645494 per mil
+24 temperament / 5/3 / 13.034405833793784 per mil
+24 temperament / 7/3 / 14.059088003114756 per mil
+24 temperament / 11/3 / 0.5308820838589856 per mil
+24 temperament / 11/5 / 12.50352374993513 per mil
+24 temperament / 13/3 / 9.522782580064337 per mil
+24 temperament / 13/5 / 3.5116232537297787 per mil
+24 temperament / 13/9 / 11.151949967886821 per mil
+24 temperament / 17/3 / 2.5003405291834646 per mil
+24 temperament / 17/5 / 15.534746362976914 per mil
+24 temperament / 17/9 / 0.8711731413604262 per mil
+
+24 temperament avg: 10.731822147864982per mil
+
+37 temperament / 3 / 9.632093873438553 per mil
+37 temperament / 4 / 0.0 per mil
+37 temperament / 5 / 2.3962294369621606 per mil
+37 temperament / 6 / 9.632093873438553 per mil
+37 temperament / 7 / 3.4558887532066818 per mil
+37 temperament / 8 / 0.0 per mil
+37 temperament / 9 / 7.76283928014998 per mil
+37 temperament / 10 / 2.3962294369621606 per mil
+37 temperament / 11 / 0.027840822162172874 per mil
+37 temperament / 12 / 9.632093873438553 per mil
+37 temperament / 13 / 2.2629845616105593 per mil
+37 temperament / 14 / 3.4558887532066818 per mil
+37 temperament / 15 / 12.028323310400268 per mil
+37 temperament / 16 / 0.0 per mil
+37 temperament / 17 / 6.38176016925801 per mil
+37 temperament / 18 / 7.76283928014998 per mil
+37 temperament / 5/3 / 7.235864436476502 per mil
+37 temperament / 7/3 / 6.17620512023187 per mil
+37 temperament / 11/3 / 9.604253051276102 per mil
+37 temperament / 11/5 / 2.3683886147999877 per mil
+37 temperament / 13/3 / 7.369109311827549 per mil
+37 temperament / 13/5 / 0.1332448753513793 per mil
+37 temperament / 13/9 / 10.025823841760761 per mil
+37 temperament / 17/3 / 11.013172984330023 per mil
+37 temperament / 17/5 / 8.777989606220116 per mil
+37 temperament / 17/9 / 1.381079110891914 per mil
+
+37 temperament avg: 8.807014773596904per mil
+
+93 temperament / 3 / 4.317339430833456 per mil
+93 temperament / 4 / 0.0 per mil
+93 temperament / 5 / 0.6525502739281319 per mil
+93 temperament / 6 / 4.317339430833456 per mil
+93 temperament / 7 / 0.9033091543784177 per mil
+93 temperament / 8 / 0.0 per mil
+93 temperament / 9 / 2.1180093103760345 per mil
+93 temperament / 10 / 0.6525502739281319 per mil
+93 temperament / 11 / 2.933972760552128 per mil
+93 temperament / 12 / 4.317339430833456 per mil
+93 temperament / 13 / 1.5149869582964381 per mil
+93 temperament / 14 / 0.9033091543784177 per mil
+93 temperament / 15 / 3.6647891569058233 per mil
+93 temperament / 16 / 0.0 per mil
+93 temperament / 17 / 1.4413358739950033 per mil
+93 temperament / 18 / 2.1180093103760345 per mil
+93 temperament / 5/3 / 4.969889704761532 per mil
+93 temperament / 7/3 / 3.4140302764551214 per mil
+93 temperament / 11/3 / 3.50137598065714 per mil
+93 temperament / 11/5 / 2.2814224866239963 per mil
+93 temperament / 13/3 / 2.8023524725374616 per mil
+93 temperament / 13/5 / 2.1675372322244035 per mil
+93 temperament / 13/9 / 3.632996268672306 per mil
+93 temperament / 17/3 / 2.876003556838036 per mil
+93 temperament / 17/5 / 2.093886147923163 per mil
+93 temperament / 17/9 / 3.5593451843711765 per mil
+
+93 temperament avg: 3.8221049894174546per mil
+
+137 temperament / 3 / 1.0208948817400643 per mil
+137 temperament / 4 / 0.0 per mil
+137 temperament / 5 / 0.7602116756833532 per mil
+137 temperament / 6 / 1.0208948817400643 per mil
+137 temperament / 7 / 2.8640560445856167 per mil
+137 temperament / 8 / 0.0 per mil
+137 temperament / 9 / 2.041789763480045 per mil
+137 temperament / 10 / 0.7602116756833532 per mil
+137 temperament / 11 / 0.4223959612428274 per mil
+137 temperament / 12 / 1.0208948817400643 per mil
+137 temperament / 13 / 0.29020886620712005 per mil
+137 temperament / 14 / 2.8640560445856167 per mil
+137 temperament / 15 / 1.781106557423806 per mil
+137 temperament / 16 / 0.0 per mil
+137 temperament / 17 / 0.12839962557331663 per mil
+137 temperament / 18 / 2.041789763480045 per mil
+137 temperament / 5/3 / 0.2606832060565445 per mil
+137 temperament / 7/3 / 3.4143191466670664 per mil
+137 temperament / 11/3 / 1.4432908429831137 per mil
+137 temperament / 11/5 / 1.1826076369261806 per mil
+137 temperament / 13/3 / 1.3111037479475451 per mil
+137 temperament / 13/5 / 1.0504205418906398 per mil
+137 temperament / 13/9 / 2.3319986296873596 per mil
+137 temperament / 17/3 / 1.1492945073129368 per mil
+137 temperament / 17/5 / 0.8886113012566144 per mil
+137 temperament / 17/9 / 2.170189389053223 per mil
+
+137 temperament avg: 2.0137143483091573per mil
+

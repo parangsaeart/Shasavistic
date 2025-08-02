@@ -1,0 +1,4 @@
+24 temperament avg: 10.731822147864982per mil
+37 temperament avg: 8.807014773596904per mil
+93 temperament avg: 3.8221049894174546per mil
+137 temperament avg: 2.0137143483091573per mil
