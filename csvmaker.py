@@ -1,3 +1,7 @@
+import csv
+import re
+
+data = """
 1 temperament / 3 / 415.03749927884394 per mil
 1 temperament / 4 / 0.0 per mil
 1 temperament / 5 / 321.9280948873622 per mil
@@ -25,7 +29,6 @@
 1 temperament / 17/5 / 234.4652536370231 per mil
 1 temperament / 17/9 / 82.46216019197294 per mil
 
-1 temperament avg: 380.0022139248395per mil
 
 2 temperament / 3 / 84.96250072115608 per mil
 2 temperament / 4 / 0.0 per mil
@@ -54,7 +57,6 @@
 2 temperament / 17/5 / 234.4652536370231 per mil
 2 temperament / 17/9 / 82.46216019197294 per mil
 
-2 temperament avg: 191.69076892896183per mil
 
 3 temperament / 3 / 81.70416594551055 per mil
 3 temperament / 4 / 0.0 per mil
@@ -83,7 +85,6 @@
 3 temperament / 17/5 / 98.86807969631029 per mil
 3 temperament / 17/9 / 82.46216019197294 per mil
 
-3 temperament avg: 143.94612502355037per mil
 
 4 temperament / 3 / 84.96250072115608 per mil
 4 temperament / 4 / 0.0 per mil
@@ -112,7 +113,6 @@
 4 temperament / 17/5 / 15.534746362976914 per mil
 4 temperament / 17/9 / 82.46216019197294 per mil
 
-4 temperament avg: 99.36809866530488per mil
 
 5 temperament / 3 / 15.037499278843903 per mil
 5 temperament / 4 / 0.0 per mil
@@ -141,7 +141,6 @@
 5 temperament / 17/5 / 34.46525363702313 per mil
 5 temperament / 17/9 / 82.46216019197294 per mil
 
-5 temperament avg: 76.7497645433895per mil
 
 6 temperament / 3 / 81.70416594551055 per mil
 6 temperament / 4 / 0.0 per mil
@@ -170,7 +169,6 @@
 6 temperament / 17/5 / 67.79858697035645 per mil
 6 temperament / 17/9 / 82.46216019197294 per mil
 
-6 temperament avg: 64.34163378663405per mil
 
 7 temperament / 3 / 13.533929292584679 per mil
 7 temperament / 4 / 0.0 per mil
@@ -199,7 +197,6 @@
 7 temperament / 17/5 / 51.24903207726261 per mil
 7 temperament / 17/9 / 60.39498266516996 per mil
 
-7 temperament avg: 51.51229219456543per mil
 
 8 temperament / 3 / 40.037499278843924 per mil
 8 temperament / 4 / 0.0 per mil
@@ -228,7 +225,6 @@
 8 temperament / 17/5 / 15.534746362976914 per mil
 8 temperament / 17/9 / 42.53783980802706 per mil
 
-8 temperament avg: 46.76068826283321per mil
 
 9 temperament / 3 / 29.406945165600497 per mil
 9 temperament / 4 / 0.0 per mil
@@ -257,7 +253,6 @@
 9 temperament / 17/5 / 12.243031414800875 per mil
 9 temperament / 17/9 / 28.648950919138215 per mil
 
-9 temperament avg: 38.469827721223396per mil
 
 10 temperament / 3 / 15.037499278843903 per mil
 10 temperament / 4 / 0.0 per mil
@@ -286,7 +281,6 @@
 10 temperament / 17/5 / 34.46525363702313 per mil
 10 temperament / 17/9 / 17.537839808027034 per mil
 
-10 temperament avg: 29.29003430496765per mil
 
 11 temperament / 3 / 39.507955266610665 per mil
 11 temperament / 4 / 0.0 per mil
@@ -315,7 +309,6 @@
 11 temperament / 17/5 / 38.26201909024962 per mil
 11 temperament / 17/9 / 8.446930717117995 per mil
 
-11 temperament avg: 34.87476362088053per mil
 
 12 temperament / 3 / 1.6291673878227053 per mil
 12 temperament / 4 / 0.0 per mil
@@ -344,7 +337,6 @@
 12 temperament / 17/5 / 15.534746362976914 per mil
 12 temperament / 17/9 / 0.8711731413604262 per mil
 
-12 temperament avg: 25.3174561999479per mil
 
 13 temperament / 3 / 30.422114663459343 per mil
 13 temperament / 4 / 0.0 per mil
@@ -373,7 +365,6 @@
 13 temperament / 17/5 / 3.696022867792359 per mil
 13 temperament / 17/9 / 5.539083268896072 per mil
 
-13 temperament avg: 28.00153685826491per mil
 
 14 temperament / 3 / 13.533929292584679 per mil
 14 temperament / 4 / 0.0 per mil
@@ -402,7 +393,6 @@
 14 temperament / 17/5 / 20.179539351308783 per mil
 14 temperament / 17/9 / 11.033588763401546 per mil
 
-14 temperament avg: 28.582058433959922per mil
 
 15 temperament / 3 / 15.037499278843903 per mil
 15 temperament / 4 / 0.0 per mil
@@ -431,7 +421,6 @@
 15 temperament / 17/5 / 32.20141302964363 per mil
 15 temperament / 17/9 / 15.795493525306291 per mil
 
-15 temperament avg: 24.32129524861712per mil
 
 16 temperament / 3 / 22.462500721156076 per mil
 16 temperament / 4 / 0.0 per mil
@@ -460,7 +449,6 @@
 16 temperament / 17/5 / 15.534746362976914 per mil
 16 temperament / 17/9 / 19.962160191972945 per mil
 
-16 temperament avg: 22.33438670665106per mil
 
 17 temperament / 3 / 3.2727933964910028 per mil
 17 temperament / 4 / 0.0 per mil
@@ -489,7 +477,6 @@
 17 temperament / 17/5 / 0.8288640100357902 per mil
 17 temperament / 17/9 / 23.638630780208224 per mil
 
-17 temperament avg: 20.578754900306333per mil
 
 18 temperament / 3 / 26.148610389955085 per mil
 18 temperament / 4 / 0.0 per mil
@@ -518,7 +505,6 @@
 18 temperament / 17/5 / 12.243031414800875 per mil
 18 temperament / 17/9 / 26.906604636417363 per mil
 
-18 temperament avg: 23.456837316867787per mil
 
 19 temperament / 3 / 6.015132300103421 per mil
 19 temperament / 4 / 0.0 per mil
@@ -547,7 +533,6 @@
 19 temperament / 17/5 / 23.93893784754941 per mil
 19 temperament / 17/9 / 22.800997702763894 per mil
 
-19 temperament avg: 18.64306072885824per mil
 
 20 temperament / 3 / 15.037499278843903 per mil
 20 temperament / 4 / 0.0 per mil
@@ -576,7 +561,6 @@
 20 temperament / 17/5 / 15.534746362976914 per mil
 20 temperament / 17/9 / 17.537839808027034 per mil
 
-20 temperament avg: 21.077740703232447per mil
 
 21 temperament / 3 / 13.533929292584679 per mil
 21 temperament / 4 / 0.0 per mil
@@ -605,7 +589,6 @@
 21 temperament / 17/5 / 3.629984458215052 per mil
 21 temperament / 17/9 / 12.775935046122289 per mil
 
-21 temperament avg: 17.345248023514596per mil
 
 22 temperament / 3 / 5.946590187934864 per mil
 22 temperament / 4 / 0.0 per mil
@@ -634,7 +617,6 @@
 22 temperament / 17/5 / 7.192526364295793 per mil
 22 temperament / 17/9 / 8.446930717117995 per mil
 
-22 temperament avg: 12.207116247138709per mil
 
 23 temperament / 3 / 19.745109416808294 per mil
 23 temperament / 4 / 0.0 per mil
@@ -663,7 +645,6 @@
 23 temperament / 17/5 / 17.07394928919703 per mil
 23 temperament / 17/9 / 4.494361547157544 per mil
 
-23 temperament avg: 16.661474513068786per mil
 
 24 temperament / 3 / 1.6291673878227053 per mil
 24 temperament / 4 / 0.0 per mil
@@ -692,7 +673,6 @@
 24 temperament / 17/5 / 15.534746362976914 per mil
 24 temperament / 17/9 / 0.8711731413604262 per mil
 
-24 temperament avg: 10.731822147864982per mil
 
 25 temperament / 3 / 15.037499278843903 per mil
 25 temperament / 4 / 0.0 per mil
@@ -721,7 +701,6 @@
 25 temperament / 17/5 / 5.534746362976906 per mil
 25 temperament / 17/9 / 2.462160191972984 per mil
 
-25 temperament avg: 16.234121748187924per mil
 
 26 temperament / 3 / 8.039423798079204 per mil
 26 temperament / 4 / 0.0 per mil
@@ -750,7 +729,6 @@
 26 temperament / 17/5 / 3.696022867792359 per mil
 26 temperament / 17/9 / 5.539083268896072 per mil
 
-26 temperament avg: 11.832998389195442per mil
 
 27 temperament / 3 / 7.630091871436484 per mil
 27 temperament / 4 / 0.0 per mil
@@ -779,7 +757,6 @@
 27 temperament / 17/5 / 12.243031414800875 per mil
 27 temperament / 17/9 / 8.388086117898874 per mil
 
-27 temperament avg: 14.43407081949872per mil
 
 28 temperament / 3 / 13.533929292584679 per mil
 28 temperament / 4 / 0.0 per mil
@@ -808,7 +785,6 @@
 28 temperament / 17/5 / 15.534746362976914 per mil
 28 temperament / 17/9 / 11.033588763401546 per mil
 
-28 temperament avg: 14.786119967391503per mil
 
 29 temperament / 3 / 1.2443958305680125 per mil
 29 temperament / 4 / 0.0 per mil
@@ -837,7 +813,6 @@
 29 temperament / 17/5 / 6.914056707804539 per mil
 29 temperament / 17/9 / 13.496642950593607 per mil
 
-29 temperament avg: 13.190549762074609per mil
 
 30 temperament / 3 / 15.037499278843903 per mil
 30 temperament / 4 / 0.0 per mil
@@ -866,7 +841,6 @@
 30 temperament / 17/5 / 1.131920303689804 per mil
 30 temperament / 17/9 / 15.795493525306291 per mil
 
-30 temperament avg: 12.022898026198785per mil
 
 31 temperament / 3 / 4.317339430833456 per mil
 31 temperament / 4 / 0.0 per mil
@@ -895,7 +869,6 @@
 31 temperament / 17/5 / 8.658802024119838 per mil
 31 temperament / 17/9 / 14.312033356414178 per mil
 
-31 temperament avg: 9.80297610840381per mil
 
 32 temperament / 3 / 8.787499278843924 per mil
 32 temperament / 4 / 0.0 per mil
@@ -924,7 +897,6 @@
 32 temperament / 17/5 / 15.534746362976914 per mil
 32 temperament / 17/9 / 11.287839808027055 per mil
 
-32 temperament avg: 11.553034317617769per mil
 
 33 temperament / 3 / 9.204924963580275 per mil
 33 temperament / 4 / 0.0 per mil
@@ -953,7 +925,6 @@
 33 temperament / 17/5 / 7.958988787219345 per mil
 33 temperament / 17/9 / 8.446930717117995 per mil
 
-33 temperament avg: 13.298106514055377per mil
 
 34 temperament / 3 / 3.2727933964910028 per mil
 34 temperament / 4 / 0.0 per mil
@@ -982,7 +953,6 @@
 34 temperament / 17/5 / 0.8288640100357902 per mil
 34 temperament / 17/9 / 5.773133925674134 per mil
 
-34 temperament avg: 7.6913311112138905per mil
 
 35 temperament / 3 / 13.533929292584679 per mil
 35 temperament / 4 / 0.0 per mil
@@ -1011,7 +981,6 @@
 35 temperament / 17/5 / 5.893825065594549 per mil
 35 temperament / 17/9 / 3.2521255223127987 per mil
 
-35 temperament avg: 10.56872583215864per mil
 
 36 temperament / 3 / 1.6291673878227053 per mil
 36 temperament / 4 / 0.0 per mil
@@ -1040,7 +1009,6 @@
 36 temperament / 17/5 / 12.243031414800875 per mil
 36 temperament / 17/9 / 0.8711731413604262 per mil
 
-36 temperament avg: 8.221729419366167per mil
 
 37 temperament / 3 / 9.632093873438553 per mil
 37 temperament / 4 / 0.0 per mil
@@ -1069,7 +1037,6 @@
 37 temperament / 17/5 / 8.777989606220116 per mil
 37 temperament / 17/9 / 1.381079110891914 per mil
 
-37 temperament avg: 8.807014773596904per mil
 
 38 temperament / 3 / 6.015132300103421 per mil
 38 temperament / 4 / 0.0 per mil
@@ -1098,7 +1065,6 @@
 38 temperament / 17/5 / 2.3768516261347683 per mil
 38 temperament / 17/9 / 3.514791770920289 per mil
 
-38 temperament avg: 10.68306692128825per mil
 
 39 temperament / 3 / 4.781089022433682 per mil
 39 temperament / 4 / 0.0 per mil
@@ -1127,7 +1093,6 @@
 39 temperament / 17/5 / 3.696022867792359 per mil
 39 temperament / 17/9 / 5.539083268896072 per mil
 
-39 temperament avg: 11.549066157191511per mil
 
 40 temperament / 3 / 9.96250072115612 per mil
 40 temperament / 4 / 0.0 per mil
@@ -1156,7 +1121,6 @@
 40 temperament / 17/5 / 9.465253637023107 per mil
 40 temperament / 17/9 / 7.4621601919729885 per mil
 
-40 temperament avg: 9.730833456938168per mil
 
 41 temperament / 3 / 0.4033529373804745 per mil
 41 temperament / 4 / 0.0 per mil
@@ -1185,7 +1149,6 @@
 41 temperament / 17/5 / 9.437185387367153 per mil
 41 temperament / 17/9 / 9.291428484655917 per mil
 
-41 temperament avg: 7.259598300873034per mil
 
 42 temperament / 3 / 10.275594516939158 per mil
 42 temperament / 4 / 0.0 per mil
@@ -1214,7 +1177,6 @@
 42 temperament / 17/5 / 3.629984458215052 per mil
 42 temperament / 17/9 / 11.033588763401546 per mil
 
-42 temperament avg: 8.897708923230132per mil
 
 43 temperament / 3 / 3.5671518839467398 per mil
 43 temperament / 4 / 0.0 per mil
@@ -1243,7 +1205,6 @@
 43 temperament / 17/5 / 1.9071141021393956 per mil
 43 temperament / 17/9 / 10.561095621980598 per mil
 
-43 temperament avg: 7.589055964339586per mil
 
 44 temperament / 3 / 5.946590187934864 per mil
 44 temperament / 4 / 0.0 per mil
@@ -1272,7 +1233,6 @@
 44 temperament / 17/5 / 7.192526364295793 per mil
 44 temperament / 17/9 / 8.446930717117995 per mil
 
-44 temperament avg: 9.091167970930712per mil
 
 45 temperament / 3 / 7.184722943378352 per mil
 45 temperament / 4 / 0.0 per mil
@@ -1301,7 +1261,6 @@
 45 temperament / 17/5 / 9.979190807421379 per mil
 45 temperament / 17/9 / 6.426728696915962 per mil
 
-45 temperament avg: 9.116681089254826per mil
 
 46 temperament / 3 / 1.9940210179744122 per mil
 46 temperament / 4 / 0.0 per mil
@@ -1330,7 +1289,6 @@
 46 temperament / 17/5 / 4.665181145585562 per mil
 46 temperament / 17/9 / 4.494361547157544 per mil
 
-46 temperament avg: 6.121795506238317per mil
 
 47 temperament / 3 / 10.494415614773045 per mil
 47 temperament / 4 / 0.0 per mil
@@ -1359,7 +1317,6 @@
 47 temperament / 17/5 / 0.4227004455337191 per mil
 47 temperament / 17/9 / 2.644222786750472 per mil
 
-47 temperament avg: 7.256887090433321per mil
 
 48 temperament / 3 / 1.6291673878227053 per mil
 48 temperament / 4 / 0.0 per mil
@@ -1388,7 +1345,6 @@
 48 temperament / 17/5 / 5.298586970356456 per mil
 48 temperament / 17/9 / 0.8711731413604262 per mil
 
-48 temperament avg: 7.391734448924391per mil
 
 49 temperament / 3 / 6.874233972721466 per mil
 49 temperament / 4 / 0.0 per mil
@@ -1417,7 +1373,6 @@
 49 temperament / 17/5 / 9.975457718655711 per mil
 49 temperament / 17/9 / 0.8295071307484747 per mil
 
-49 temperament avg: 8.74977099995069per mil
 
 50 temperament / 3 / 4.962500721156116 per mil
 50 temperament / 4 / 0.0 per mil
@@ -1446,7 +1401,6 @@
 50 temperament / 17/5 / 5.534746362976906 per mil
 50 temperament / 17/9 / 2.462160191972984 per mil
 
-50 temperament avg: 6.757059407283239per mil
 
 51 temperament / 3 / 3.2727933964910028 per mil
 51 temperament / 4 / 0.0 per mil
@@ -1475,7 +1429,6 @@
 51 temperament / 17/5 / 0.8288640100357902 per mil
 51 temperament / 17/9 / 4.030787642953282 per mil
 
-51 temperament avg: 7.400392372209864per mil
 
 52 temperament / 3 / 8.039423798079204 per mil
 52 temperament / 4 / 0.0 per mil
@@ -1504,7 +1457,6 @@
 52 temperament / 17/5 / 3.696022867792359 per mil
 52 temperament / 17/9 / 5.539083268896072 per mil
 
-52 temperament avg: 7.217850732885752per mil
 
 53 temperament / 3 / 0.05684034379760394 per mil
 53 temperament / 4 / 0.0 per mil
@@ -1533,7 +1485,6 @@
 53 temperament / 17/5 / 8.050159297400494 per mil
 53 temperament / 17/9 / 6.990462078765414 per mil
 
-53 temperament avg: 4.527060744870649per mil
 
 54 temperament / 3 / 7.630091871436484 per mil
 54 temperament / 4 / 0.0 per mil
@@ -1562,7 +1513,6 @@
 54 temperament / 17/5 / 6.275487103717614 per mil
 54 temperament / 17/9 / 8.388086117898874 per mil
 
-54 temperament avg: 7.6941727806633455per mil
 
 55 temperament / 3 / 3.1443189029742857 per mil
 55 temperament / 4 / 0.0 per mil
@@ -1591,7 +1541,6 @@
 55 temperament / 17/5 / 1.8983827266132458 per mil
 55 temperament / 17/9 / 8.446930717117995 per mil
 
-55 temperament avg: 7.428526190687254per mil
 
 56 temperament / 3 / 4.323213564558226 per mil
 56 temperament / 4 / 0.0 per mil
@@ -1620,7 +1569,6 @@
 56 temperament / 17/5 / 2.3223964941659903 per mil
 56 temperament / 17/9 / 6.8235540937413575 per mil
 
-56 temperament avg: 6.3028827045296705per mil
 
 57 temperament / 3 / 6.015132300103421 per mil
 57 temperament / 4 / 0.0 per mil
@@ -1649,7 +1597,6 @@
 57 temperament / 17/5 / 6.3950781984265515 per mil
 57 temperament / 17/9 / 5.257138053641142 per mil
 
-57 temperament avg: 6.284710464818922per mil
 
 58 temperament / 3 / 1.2443958305680125 per mil
 58 temperament / 4 / 0.0 per mil
@@ -1678,7 +1625,6 @@
 58 temperament / 17/5 / 6.914056707804539 per mil
 58 temperament / 17/9 / 3.744736359751144 per mil
 
-58 temperament avg: 5.07962581993124per mil
 
 59 temperament / 3 / 8.257838261894745 per mil
 59 temperament / 4 / 0.0 per mil
@@ -1707,7 +1653,6 @@
 59 temperament / 17/5 / 2.8228819561972873 per mil
 59 temperament / 17/9 / 2.283602519891459 per mil
 
-59 temperament avg: 6.290123397218528per mil
 
 60 temperament / 3 / 1.6291673878227053 per mil
 60 temperament / 4 / 0.0 per mil
@@ -1736,7 +1681,6 @@
 60 temperament / 17/5 / 1.131920303689804 per mil
 60 temperament / 17/9 / 0.8711731413604262 per mil
 
-60 temperament avg: 5.624725566949796per mil
 
 61 temperament / 3 / 5.201433705073422 per mil
 61 temperament / 4 / 0.0 per mil
@@ -1765,7 +1709,6 @@
 61 temperament / 17/5 / 4.957056915711577 per mil
 61 temperament / 17/9 / 0.49494707721886577 per mil
 
-61 temperament avg: 6.3966308446673565per mil
 
 62 temperament / 3 / 4.317339430833456 per mil
 62 temperament / 4 / 0.0 per mil
@@ -1794,7 +1737,6 @@
 62 temperament / 17/5 / 7.470230233944664 per mil
 62 temperament / 17/9 / 1.816998901650324 per mil
 
-62 temperament avg: 6.214800778938539per mil
 
 63 temperament / 3 / 2.339086580431249 per mil
 63 temperament / 4 / 0.0 per mil
@@ -1823,7 +1765,6 @@
 63 temperament / 17/5 / 3.629984458215052 per mil
 63 temperament / 17/9 / 3.097080826893528 per mil
 
-63 temperament avg: 5.120184925674256per mil
 
 64 temperament / 3 / 6.837500721156076 per mil
 64 temperament / 4 / 0.0 per mil
@@ -1852,7 +1793,6 @@
 64 temperament / 17/5 / 0.09025363702308553 per mil
 64 temperament / 17/9 / 4.337160191972944 per mil
 
-64 temperament avg: 5.6361482758087025per mil
 
 65 temperament / 3 / 0.3471161057714278 per mil
 65 temperament / 4 / 0.0 per mil
@@ -1881,7 +1821,6 @@
 65 temperament / 17/5 / 3.696022867792359 per mil
 65 temperament / 17/9 / 5.539083268896072 per mil
 
-65 temperament avg: 5.120460420891753per mil
 
 66 temperament / 3 / 5.946590187934864 per mil
 66 temperament / 4 / 0.0 per mil
@@ -1910,5 +1849,59 @@
 66 temperament / 17/5 / 7.192526364295793 per mil
 66 temperament / 17/9 / 6.704584434397143 per mil
 
-66 temperament avg: 5.807429967967407per mil
 
+"""
+
+# --- 파싱 및 데이터 정리 ---
+
+# 각 행에서 temperament, ratio, value 분리
+pattern = re.compile(r'(\d+)\s+temperament\s+/\s+([\d/]+)\s+/\s+([0-9.eE+-]+) per mil')
+
+data_dict = {}
+ratios_set = set()
+temperaments_set = set()
+
+for line in data.strip().splitlines():
+    line = line.strip()
+    if not line:
+        continue
+    match = pattern.match(line)
+    if match:
+        temperament = match.group(1)
+        ratio = match.group(2)
+        value = float(match.group(3))
+
+        temperaments_set.add(temperament)
+        ratios_set.add(ratio)
+
+        if temperament not in data_dict:
+            data_dict[temperament] = {}
+        data_dict[temperament][ratio] = value
+    else:
+        print("파싱 실패:", line)
+
+# 정렬
+temperaments = sorted(temperaments_set, key=int)
+# ratio는 단순 숫자와 분수 섞여있으므로 정렬 커스텀
+def ratio_key(r):
+    if '/' in r:
+        nums = list(map(int, r.split('/')))
+        return (nums[0]/nums[1], r)
+    else:
+        return (int(r), r)
+ratios = sorted(ratios_set, key=ratio_key)
+
+# --- CSV 작성 ---
+with open('temperament_ratio.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    header = ['Temperament\\Ratio'] + ratios
+    writer.writerow(header)
+
+    for t in temperaments:
+        row = [t]
+        for r in ratios:
+            val = data_dict.get(t, {}).get(r, '')
+            row.append(val)
+        writer.writerow(row)
+
+print("CSV 파일 'temperament_ratio.csv' 생성 완료")

@@ -20,7 +20,7 @@ targetTemp = [24, 37, 93, 137]
 minavgTemp = []
 minavg = 123412341234
 
-for tmp in targetTemp:
+for tmp in range(1, 67):
     sum = 0
     for trg in target:
         errr = PEC(tmp, trg)*1000
