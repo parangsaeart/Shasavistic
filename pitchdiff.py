@@ -8,13 +8,15 @@ def pitchDiff(n, q):
     result = frac_part - (rounded / n)
     return (rounded, result)
 
+tempnum = int(input("input EDO >> "))
 target = list(range(3, 19))
 targetSpecial = ['5/3', '7/3', '11/3', '11/5', '13/3', '13/5', '13/9', '17/3', '17/5', '17/9']
 
+print("------------"+str(tempnum)+"EDO--------")
 for trg in target:
-    df = pitchDiff(53, trg)
+    df = pitchDiff(tempnum, trg)
     print(str(df[0]) + " / " + str(trg) + " / " + str(df[1]))
 
 for trg in targetSpecial:
-    df = pitchDiff(53, Fraction(trg))
+    df = pitchDiff(tempnum, Fraction(trg))
     print(str(df[0]) + " / " + trg + " / " + str(df[1]))
